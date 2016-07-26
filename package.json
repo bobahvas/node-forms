@@ -1,0 +1,26 @@
+{
+  "name": "node-forms",
+  "version": "0.0.1",
+  "description": "Form validator for Node.js",
+  "main": "index.js",
+  "keywords": [
+    "form",
+    "validator"
+  ],
+  "author": {
+    "email": "bobahvas@gmail.com",
+    "name": "Vladimir Vasiliev"
+  },
+  "homepage": "https://github.com/bobahvas/node-forms",
+  "bugs": {
+    "url": "https://github.com/bobahvas/node-forms/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bobahvas/node-forms.git"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "q": "^1.4.1"
+  }
+}
