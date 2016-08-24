@@ -21,6 +21,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "q": "^1.4.1"
+    "q": "^1.4.1",
+    "messageformat": "^0.3.1"
   }
 }
