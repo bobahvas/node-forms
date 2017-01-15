@@ -1,6 +1,6 @@
 {
   "name": "node-forms",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Form validator for Node.js",
   "main": "index.js",
   "keywords": [
@@ -22,6 +22,6 @@
   "license": "MIT",
   "dependencies": {
     "q": "^1.4.1",
-    "messageformat": "^0.3.1"
+    "messageformat": "^1.0.2"
   }
 }
