@@ -2,7 +2,7 @@
 
 A library for form validation
 
-####Installation
+#### Installation
 To install node-forms in the directory and save it in the dependencies list. For example:
 ```
 $ npm install node-forms —save
@@ -12,7 +12,7 @@ To install node-forms temporarily and not add it to the dependencies list, omit 
 $ npm install node-forms
 ```
 
-####Quick Start
+#### Quick Start
 ```js
 var Form = require('node-forms');
 
