@@ -2,7 +2,7 @@
 
 A library for form validation
 
-#####Installation
+####Installation
 To install node-forms in the directory and save it in the dependencies list. For example:
 ```
 $ npm install node-forms —save
@@ -12,7 +12,7 @@ To install node-forms temporarily and not add it to the dependencies list, omit 
 $ npm install node-forms
 ```
 
-#####Quick Start
+####Quick Start
 ```js
 var Form = require('node-forms');
 
@@ -139,6 +139,7 @@ This validator checks if the input value can be found among the given list of va
 
 * `values`: a list of given values within which the input value should be looked for.
 * `not`: whether the validation result should be inverted. Defaults to false. When this property is set true, the validator checks if the input value is NOT among the given list of values.
+* `skipOnEmpty`: whether the validation can be skipped if the input is empty. Defaults to `false`, which means the input is required.
 
 ###### compare
 ```js
@@ -203,6 +204,7 @@ This validator checks if the input value is a number. It is equivalent to the do
 * `integerOnly`: whether the attribute value can only be an integer. Defaults to false.
 * `max`: the upper limit (inclusive) of the value. Set `messageTooSmall` for the customized message used when the number is too small.
 * `min`: the lower limit (inclusive) of the value. Set `messageTooBig` param for the customized message used when the number is too big.
+* `skipOnEmpty`: whether the validation can be skipped if the input is empty. Defaults to `false`, which means the input is required.
 
 ###### string
 ```js
@@ -223,6 +225,7 @@ This validator checks if the input value is a valid string with certain length.
 * `length`: specifies the length limit of the input string being validated. Set `messageNotEqual` for the customized message.
 * `min`: the minimum length of the input string. Set `messageTooShort` for the customized message.
 * `max`: the maximum length of the input string. Set `messageTooLong` for the customized message.
+* `skipOnEmpty`: whether the validation can be skipped if the input is empty. Defaults to `false`, which means the input is required.
 
 #### Creating custom validators and filters
 Besides using the core validators included in the `node-forms` releases, you may also create your own validators. You may create inline validators or standalone validators.
@@ -450,8 +453,10 @@ module.exports = Validator;
 ```
 
 #### Methods
+
 ###### setLanguage(language)
 Set needed language for error messages. By default `node-forms` uses `en` language.
+
 ###### setScenario(scenario)
 A `node-forms` may be used in different scenarios. In different scenarios, may use different business rules and logic. By default, it supports only a single scenario named `default`.
 
@@ -477,6 +482,7 @@ var form = new Form({
     scenario: 'registration'
 });
 ```
+
 ###### setRules(rules)
 Set list of rules.
 ```js
@@ -485,6 +491,7 @@ form.setRules([
     {attributes: ['name'], validator: 'safe'}
 ]);
 ```
+
 ###### setAttributes(attributes)
 Set attributes list.
 ```js
@@ -497,21 +504,32 @@ If you are using [express](https://github.com/expressjs/express) with body parse
 ```js
 form.setAttributes(req.body);
 ```
+
 ###### getAttribute(attribute)
 Return attribute value.
+
 ###### getAttributes()
 Return an object with attributes and attributes values.
 ```js
 {attributeName1: 'Value 1', attributeName2: 'Value 2'}
 ```
 ###### validate(attributeNames, clearErrors)
+Performs the data validation.
+This method executes the validation rules applicable to the current scenario.
+
+* `attributeNames`: List of attribute names that should be validated. If this parameter is empty, it means any attribute listed in the applicable validation rules should be validated.
+* `clearErrors`: Whether to call `clearErrors()` before performing validation
+
+Return a promise with errors or empty object.
 
 ###### getErrors()
 Return an object with error messages.
 ```js
 {attributeName1: 'Error message 1', attributeName2: 'Error message 2'}
 ```
+
 ###### hasErrors(attribute)
 Check any errors and return boolean. If pass attribute name it will check only it.
+
 ###### clearErrors(attribute)
-Clear errors. If pass attribute name it will clear only error for it.
+Removes errors for all attributes or a single attribute.
